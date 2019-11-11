@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Domain.Entities.Newslettre>
+@using GridMvc.Html
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" type="text/css" />
+<script src="@Url.Content("~/Scripts/gridmvc.min.js")" type="text/javascript"> </script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<link href="@Url.Content("~/Content/Css/bootstrap.min.css")" rel="stylesheet" type="text/css" />
+@{
+    ViewBag.Title = "AllNewslettre";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>AllNewslettre</h2>
+
+<p>
+ 
+</p>
+
+
+@Html.Grid(Model).Columns(columns =>
+{
+    columns.Add(foo => foo.MailUser).Titled("mail").Sortable(true).Filterable(true);
+    columns.Add(foo => foo.PhoneUser).Titled("Phone").Sortable(true).Filterable(true);
+    columns.Add(foo => foo.status).Titled("Status").Sortable(true).Filterable(true);
+   
+}).WithPaging(10)

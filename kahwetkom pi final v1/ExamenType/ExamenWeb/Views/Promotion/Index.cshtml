@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Domain.Entities.Promotion>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdProduit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NewPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Remise)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateFin)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdProduit)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NewPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Remise)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateFin)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdPromotion }) |
+            @Html.ActionLink("Details", "Details", new { id=item.IdPromotion }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.IdPromotion })
+        </td>
+    </tr>
+}
+
+</table>

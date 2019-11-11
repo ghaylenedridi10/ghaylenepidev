@@ -1,0 +1,279 @@
+﻿@model Domain.Entities.Newslettre
+@{
+    ViewBag.Title = "CreateFront";
+    Layout = "~/Views/Shared/_LayoutFront.cshtml";
+}
+
+        <!-- Home -->
+
+<div class="home">
+
+    <!-- Home Slider -->
+
+    <div class="home_slider_container">
+        <div class="owl-carousel owl-theme home_slider">
+
+            <!-- Home Slider Item -->
+            @foreach (var item in ViewBag.Offre)
+            {
+                if (item.DateFin> DateTime.Now)
+                {
+            <div class="owl-item">
+                @{string path = "~/Content/Upload/" + item.Products.Image;}
+             
+                
+
+                <div class="home_slider_background" style='background-image:url("@Url.Content(path)")'></div>
+                <div class="home_slider_content">
+                    <div class="home_slider_content_inner">
+                        <div class="home_slider_subtitle">@item.Products.Libelle</div>
+                        <div class="home_slider_title">@item.Description</div>
+                        <div class="#">FROM @item.DateDebut  TO @item.DateFin</div>
+                       
+                    </div>
+                </div>
+            </div>
+                        }
+                    }
+            <!-- Home Slider Item -->
+            
+
+            <!-- Home Slider Item -->
+          
+
+        </div>
+
+        <!-- Home Slider Nav -->
+
+        <div class="home_slider_next d-flex flex-column align-items-center justify-content-center"><img src=@Url.Content("/Content/FrontOffice/images/arrow_r.png") alt=""></div>
+
+        <!-- Home Slider Dots -->
+
+        <div class="home_slider_dots_container">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_slider_dots">
+                            <ul id="home_slider_custom_dots" class="home_slider_custom_dots">
+                                <li class="home_slider_custom_dot active">01.<div></div></li>
+                                <li class="home_slider_custom_dot">02.<div></div></li>
+                                <li class="home_slider_custom_dot">03.<div></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Promo -->
+
+<div class="promo">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                    <div class="section_subtitle">only the best</div>
+                    <div class="section_title">promo prices</div>
+                </div>
+            </div>
+        </div>
+        <div class="row promo_container">
+
+            <!-- Promo Item -->
+           
+
+            <!-- Promo Item -->
+         
+
+            <!-- Promo Item -->
+@foreach (var item in ViewBag.Promotion)
+{
+    
+    
+            <div class="col-lg-4 promo_col">
+                <div class="promo_item">
+                    <div class="promo_image">
+                        @{string path = "~/Content/Upload/" + item.Products.Image;}
+                        <img src="@Url.Content(path)" alt="">
+                        <div class="promo_content promo_content_3">
+                            <div class="promo_title">@item.Remise % off</div>
+                            <div class="promo_subtitle">new Price= @item.NewPrice $ </div>
+                        </div>
+                    </div>
+                 <br />
+                    <div class="promo_link"><a href="#">@item.DateFin</a></div>
+                </div>
+            </div>
+                                
+                            }
+
+        </div>
+    </div>
+</div>
+
+<!-- New Arrivals -->
+
+<div class="arrivals">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="section_title_container text-center">
+                 
+                    <div class="section_title">Publicity</div>
+                </div>
+            </div>
+        </div>
+        <div class="row products_container">
+
+            <!-- Product -->
+@foreach (var item in ViewBag.Publicite)
+{
+            <div class="col-lg-4 product_col">
+                <div class="product">
+                    <div class="product_image">
+                        @{string path = "~/Content/Upload/" + item.Image;}
+                        <img src="@Url.Content(path)" alt="">
+                       
+                    </div>
+                  
+                    <div class="product_content clearfix">
+                        <div class="product_info">
+                            <div class="product_name"><a href="product.html">Title: @item.Titre</a></div>
+                            <div class="product_price">Description : @item.Description</div>
+                            <div class="product_name"><a href="product.html">Name Product: @item.Products.Libelle</a></div>
+                        </div>
+          
+                    </div>
+                    <div class="product_name">@Html.ActionLink("Details","Detailsfront", new { id = item.IdPublicite })</div>
+                </div>
+            </div>
+}
+            <!-- Product -->
+          
+
+            <!-- Product -->
+         
+
+        </div>
+    </div>
+</div>
+
+<!-- Extra -->
+
+
+
+<!-- Gallery -->
+
+
+
+        <!-- Gallery Slider -->
+     
+  
+
+<!-- Testimonials -->
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="newsletter">
+    <div class="newsletter_content">
+        <div class="newsletter_image" style="background-image:url(@Url.Content("/Content/FrontOffice/images/newsletter.png"))"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                   
+                </div>
+            </div>
+            <style>
+                
+
+html , body {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Open Sans', sans-serif;
+}
+
+.panel {
+    
+    top: 180px;
+	text-align: center;
+	margin: auto;
+	width: 360px;
+	height: auto;
+	box-shadow: 0px 0px 10px #888888;
+	overflow: hidden;
+	margin-top: 20px;
+    background-color: rgba(0,0,0,0.3);
+}
+.panel h1 {
+	margin-top: 20px;
+	font-size: 24px;
+}
+.facebook-sign {
+	background-color: #405d9a;
+	margin: 20px 20px;
+	color: #fff;
+	padding: 15px 8px;
+}
+
+.or {
+	padding: 10px;
+	width: 20px;
+	height: 20px;
+	margin: auto;
+	border-radius: 50px;
+	border: 1px solid #cccccc;
+	margin-bottom: 20px;
+}
+
+input {
+	border: 1px solid #cccccc;
+	padding: 15px 8px;
+	width: 300px;
+	margin-bottom: 15px;
+}
+
+.sign-up {
+	background: #f27242;
+	color: #fff;
+	font-size: 16px;
+	padding: 1px;
+}
+            </style>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Product Single Page</title>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+                <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+            </head>
+            <body>
+                <div class="panel">
+
+                    <div class="facebook-sign">
+                        <i class="fa fa-facebook-official" aria-hidden="true"> Sign Up with Facebook</i>
+                    </div>
+                    
+                    <form action="#">
+                        <input type="email" placeholder="Your E-mail" @Html.EditorFor(model => model.MailUser, new { htmlAttributes = new { @class = "newsletter_input" } })> <br>
+                        <input type="number" placeholder="Your Phone" @Html.EditorFor(model => model.PhoneUser, new { htmlAttributes = new { @class = "newsletter_input" } })> <br>
+                        
+                        <div class="sign-up">
+                            <button type="submit" class="newsletter_button" style="
+    width: 370px;
+    height: 46px;">subscribe</button>
+                            <p>Sig Up Now</p>
+                        </div>
+                    </form>
+                </div>
+            </body>
+        </html>
+        </div>
+    </div>
+</div>
+}
