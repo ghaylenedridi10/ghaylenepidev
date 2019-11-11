@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domaine.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -11,10 +12,10 @@ namespace Domain.Entities
     {
         [Key]
         public int IdCommande { get; set; }
-        public virtual Panier Panierr { get; set; }
+        public virtual Paniers Panierrs { get; set; }
         public int IdPanier { get; set; }
         public virtual User Users { get; set; }
-        public int IdUser { get; set; }
+        public int? IdUser { get; set; }
         public float PrixTotal { get; set; }
         public DateTime DateCommand { get; set; }
 

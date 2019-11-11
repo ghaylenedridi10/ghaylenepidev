@@ -1,0 +1,238 @@
+﻿@model Domaine.Entities.User
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Categories</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Wish shop project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/bootstrap4/bootstrap.min.css")>
+    <link href=@Url.Content("/Content/FrontOffice/plugins/font-awesome-4.7.0/css/font-awesome.min.css") rel="stylesheet" type="text/css">
+    <link href=@Url.Content("/Content/FrontOffice/plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.css") rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/plugins/jquery-ui-1.12.1.custom/jquery-ui.css")>
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/categories.css")>
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/categories_responsive.css")>
+</head>
+<body>
+    <style>
+        body {
+	background: #eee !important;
+}
+                .testaa{
+            border: 1px solid rgba(0,0,0,0.1);
+            width:476.68px;
+            height:47.28px;
+        }
+.wrapper {
+	margin-top: 80px;
+  margin-bottom: 80px;
+              max-width: 680px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+}
+
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+
+	.checkbox {
+	  font-weight: normal;
+	}
+
+	.form-control {
+	  position: relative;
+	  font-size: 16px;
+	  height: auto;
+	  padding: 10px;
+	}
+
+    </style>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="header_inner d-flex flex-row align-items-center justify-content-start">
+                <div class="logo"><a href="#">Wish</a></div>
+                <nav class="main_nav">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="categories.html">clothes</a></li>
+                        <li><a href="categories.html">accessories</a></li>
+                        <li><a href="categories.html">lingerie</a></li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header_content ml-auto">
+                    <div class="search header_search">
+                        <form action="#">
+                            <input type="search" class="search_input" required="required">
+                            <button type="submit" id="search_button" class="search_button"><img src="images/magnifying-glass.svg" alt=""></button>
+                        </form>
+                    </div>
+                    <div class="shopping">
+                        <!-- Cart -->
+                        <table>
+                            <td>
+                                <a href='@Url.Action("Index", "Paniers")'>
+                                    <img src=@Url.Content("/Content/FrontOffice/images/shopping-bag.svg") alt="">
+                                </a>
+                            </td>
+                            <td>
+                                <a href="#">
+                                    <div class="avatar">
+                                        <img src=@Url.Content("/Content/FrontOffice/images/avatar.svg") alt="">
+                                    </div>
+                                </a>
+                            </td>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="burger_container d-flex flex-column align-items-center justify-content-around menu_mm"><div></div><div></div><div></div></div>
+            </div>
+        </header>
+        @using (Html.BeginForm())
+            {
+            @Html.AntiForgeryToken()
+            <br />
+            <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+            <div class="form-horizontal">
+                <div class="wrapper">
+                    
+                    <br />
+                    <br />
+                    <form class="form-signin">
+                        <h2 class="form-signin-heading">Please login</h2>
+
+                       
+                        <br />
+                        <br />
+                        <br />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.CIN, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.CIN, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CIN, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Picture, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Picture, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Picture, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.BirthDate, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.BirthDate, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.BirthDate, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="testaa" />
+                            </div>
+                        </div>
+
+
+
+                    </form>
+                </div>
+            </div>
+        }
+
+    </div>
+</body>
+</html>
+<script src=@Url.Content("/Content/FrontOffice/js/jquery-3.2.1.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/styles/bootstrap4/popper.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/styles/bootstrap4/bootstrap.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/easing/easing.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/parallax-js-master/parallax.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/Isotope/isotope.pkgd.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/jquery-ui-1.12.1.custom/jquery-ui.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/js/categories_custom.js")></script>

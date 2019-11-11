@@ -1,0 +1,189 @@
+﻿@model Domaine.Entities.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Categories</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Wish shop project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/bootstrap4/bootstrap.min.css")>
+    <link href=@Url.Content("/Content/FrontOffice/plugins/font-awesome-4.7.0/css/font-awesome.min.css") rel="stylesheet" type="text/css">
+    <link href=@Url.Content("/Content/FrontOffice/plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.css") rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/plugins/jquery-ui-1.12.1.custom/jquery-ui.css")>
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/categories.css")>
+    <link rel="stylesheet" type="text/css" href=@Url.Content("/Content/FrontOffice/styles/categories_responsive.css")>
+</head>
+<body>
+    <style>
+        body {
+            background: #eee !important;
+        }
+        .testaa{
+            border: 1px solid rgba(0,0,0,0.1);
+
+            width:608.02px;
+            height:45.31px;
+        }
+        .wrapper {
+            margin-top: 80px;
+            margin-bottom: 80px;
+            max-width: 680px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .form-signin {
+            max-width: 380px;
+            padding: 15px 35px 45px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+        }
+
+
+        .checkbox {
+            font-weight: normal;
+        }
+
+        .form-control {
+            position: relative;
+            font-size: 16px;
+            height: auto;
+            padding: 10px;
+        }
+    </style>
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+            <div class="header_inner d-flex flex-row align-items-center justify-content-start">
+                <div class="logo"><a href="#">Wish</a></div>
+                <nav class="main_nav">
+                    <ul>
+                        <li><a href="index.html">home</a></li>
+                        <li><a href="categories.html">clothes</a></li>
+                        <li><a href="categories.html">accessories</a></li>
+                        <li><a href="categories.html">lingerie</a></li>
+                        <li><a href="contact.html">contact</a></li>
+                    </ul>
+                </nav>
+                <div class="header_content ml-auto">
+                    <div class="search header_search">
+                        <form action="#">
+                            <input type="search" class="search_input" required="required">
+                            <button type="submit" id="search_button" class="search_button"><img src="images/magnifying-glass.svg" alt=""></button>
+                        </form>
+                    </div>
+                    <div class="shopping">
+                        <!-- Cart -->
+                        <a href="#">
+                            <div class="cart">
+                                <img src=@Url.Content("/Content/FrontOffice/images/shopping-bag.svg") alt="">
+                                <div class="cart_num_container">
+                                    <div class="cart_num_inner">
+                                        <div class="cart_num">1</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Star -->
+                        <a href="#">
+                            <div class="star">
+                                <img src=@Url.Content("/Content/FrontOffice/images/star.svg") alt="">
+                                <div class="star_num_container">
+                                    <div class="star_num_inner">
+                                        <div class="star_num">0</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <!-- Avatar -->
+                        <a href="#">
+                            <div class="avatar">
+                                <img src=@Url.Content("/Content/FrontOffice/images/avatar.svg") alt="">
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+        <br />
+
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+
+            <div class="form-horizontal">
+                <br />
+                <br />
+<br />
+                <div class="wrapper">
+                    <br />
+                    <br />
+
+                    <form class="form-signin">
+                        <h2 class="form-signin-heading">Please login</h2>
+                        @{
+                            if (ViewBag.Result != null)
+                            {
+                                <h3>@ViewBag.Message</h3>
+                            }
+                        }
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="username">
+                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "UserName" } })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <br />
+                        <div class="password">
+                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        </div>
+                        <br />
+                        <br />
+
+                        <div class="log-btn">
+                            <button type="submit" class="testaa"><i class="fa fa-sign-in"></i> Log In</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+                            }
+    </div>
+</body>
+</html>
+<script src=@Url.Content("/Content/FrontOffice/js/jquery-3.2.1.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/styles/bootstrap4/popper.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/styles/bootstrap4/bootstrap.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/easing/easing.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/parallax-js-master/parallax.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/Isotope/isotope.pkgd.min.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/malihu-custom-scrollbar/jquery.mCustomScrollbar.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/plugins/jquery-ui-1.12.1.custom/jquery-ui.js")></script>
+<script src=@Url.Content("/Content/FrontOffice/js/categories_custom.js")></script>
+
+
+
+
+

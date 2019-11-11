@@ -1,0 +1,131 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+<body class="wrapper">
+    <div id="container" style="height:250px"></div>
+
+    <div id="container2" style="height:250px"></div>
+    <button class="logout">
+
+        @Html.ActionLink("Back", "Index", "User")
+    </button>
+</body>
+
+
+<script src="~/Scripts/chart/exporting.js"></script>
+<script src="~/Scripts/chart/highcharts.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+<script src="~/Scripts/morris-data.js"></script>
+<script src="~/Scripts/raphael-min.js"></script>
+<script src="~/Scripts/morris.js"></script>
+<script src="~/Scripts/morris.min.js"></script>
+
+@* Commande per month*@
+
+<script>
+        $(document).ready(function () {
+            $.getJSON("/Stats/GetData", function (data) {
+                var Names = []
+                var Qts = []
+                for (var i = 0; i < data.length; i++) {
+                    Names.push(data[i].name);
+                    Qts.push(data[i].count);
+                }
+
+                Highcharts.chart('container2', {
+                    chart: {
+                        type: 'line'
+                    },
+                    title: {
+                        text: 'Command Per Month'
+                    },
+                    subtitle: {
+                        text: '2019'
+                    },
+                    xAxis: {
+                        categories: Names
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Command Number'
+                        }
+                    },
+                    plotOptions: {
+                        line: {
+                            dataLabels: {
+                                enabled: true
+                            },
+                            enableMouseTracking: true
+                        }
+                    },
+                    series: [{
+                        name: 'Month',
+                        data: Qts
+                    }]
+                });
+            });
+        });
+
+
+</script>
+
+
+@* Active and inactive users *@
+<script>
+
+
+        $(document).ready(function () {
+            $.getJSON("/Stats/GetUsers", function (data) {
+
+
+
+                Highcharts.chart('container', {
+                    chart: {
+                        plotBackgroundColor: null,
+                        plotBorderWidth: null,
+                        plotShadow: false,
+                        type: 'pie'
+                    },
+                    title: {
+                        text: 'Active Ratio'
+                    },
+                    tooltip: {
+                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: true,
+                                format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                                style: {
+                                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                                }
+                            }
+                        }
+                    },
+                    series: [{
+                        name: 'Users',
+                        colorByPoint: true,
+                        data: [{
+                            name: 'Active',
+                            y: data.Active
+                        }, {
+                            name: 'InActive',
+                            y: data.InActive
+                        }]
+                    }]
+                });
+            });
+        });
+
+
+</script>

@@ -1,0 +1,152 @@
+﻿@model IEnumerable<Domain.Entities.Produit>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Front_Layout.cshtml";
+}
+
+
+
+        <!-- Menu -->
+
+        <div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+            <div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+            <div class="logo menu_mm"><a href="#">Wish</a></div>
+            <div class="search">
+                <form action="#">
+                    <input type="search" class="search_input menu_mm" required="required">
+                    <button type="submit" id="search_button_menu" class="search_button menu_mm"><img class="menu_mm" src=@Url.Content("/Content/FrontOffice/images/magnifying-glass.svg") alt=""></button>
+                </form>
+            </div>
+            <nav class="menu_nav">
+                <ul class="menu_mm">
+                    <li class="menu_mm"><a href="#">home</a></li>
+                    <li class="menu_mm"><a href="#">clothes</a></li>
+                    <li class="menu_mm"><a href="#">accessories</a></li>
+                    <li class="menu_mm"><a href="#">lingerie</a></li>
+                    <li class="menu_mm"><a href="#">contact</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Home -->
+
+        <div class="home">
+            <div class="home_background parallax-window" data-parallax="scroll" data-image-src=@Url.Content("/Content/FrontOffice/images/categories.jpg") data-speed="0.8"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="home_container">
+                            <div class="home_content">
+                                <div class="home_title">Woman</div>
+                                <div class="breadcrumbs">
+                                    <ul>
+                                        <li><a href="index.html">Home</a></li>
+                                        <li>Woman</li>
+                                        <li>Accessories</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+
+        <div class="products">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Sidebar Left -->
+
+
+                        <div class="current_page">Woman's Fashion</div>
+                    </div>
+                    <div class="col-12">
+                        <div class="product_sorting clearfix">
+                            <div class="view">
+                                <div class="view_box box_view"><i class="fa fa-th-large" aria-hidden="true"></i></div>
+                                <div class="view_box detail_view"><i class="fa fa-bars" aria-hidden="true"></i></div>
+                            </div>
+                            <div class="sorting">
+                                <ul class="item_sorting">
+                                    <li>
+                                        <span class="sorting_text">Show all</span>
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        <ul>
+                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "original-order" }'><span>Show All</span></li>
+                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "price" }'><span>Price</span></li>
+                                            <li class="product_sorting_btn" data-isotope-option='{ "sortBy": "stars" }'><span>Stars</span></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <span class="sorting_text">Show</span>
+                                        <span class="num_sorting_text">12</span>
+                                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                                        <ul>
+                                            <li class="num_sorting_btn"><span>3</span></li>
+                                            <li class="num_sorting_btn"><span>6</span></li>
+                                            <li class="num_sorting_btn"><span>12</span></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row products_container">
+                    <div class="col">
+
+                        <!-- Products -->
+
+                        <div class="product_grid">
+                        @foreach (var item in Model)
+                        {
+                            <!-- Product -->
+                            <div class="product">
+                                <div class="product_image"><img src=@Url.Content("/Content/FrontOffice/images/product_1.jpg") alt=""></div>
+                                <div class="rating rating_4" data-rating="4">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <div class="product_content clearfix">
+                                    <div class="product_info">
+                                        <div class="product_name">@Html.ActionLink("Details", "Details", new { id = item.Id_produit })</div>
+                                        <div class="product_price">@Html.DisplayFor(modelItem => item.Nom)</div>
+                                    </div>
+                                    <div class="product_options">
+                                        <div class="product_buy product_option"><img src=@Url.Content("/Content/FrontOffice/images/shopping-bag-white.svg") alt=""></div>
+                                        <div class="product_fav product_option">@Html.ActionLink("Add", "OrderNow", "Paniers", new { id = item.Id_produit },null)</div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row page_num_container">
+                    <div class="col text-right">
+                        <ul class="page_nums">
+                            <li><a href="#">01</a></li>
+                            <li class="active"><a href="#">02</a></li>
+                            <li><a href="#">03</a></li>
+                            <li><a href="#">04</a></li>
+                            <li><a href="#">05</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+

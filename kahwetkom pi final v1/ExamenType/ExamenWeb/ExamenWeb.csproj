@@ -52,10 +52,6 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="GridMvc, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Grid.Mvc.3.0.0\lib\net40\GridMvc.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -89,6 +85,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PayPal, Version=1.9.1.0, Culture=neutral, PublicKeyToken=5b4afc1ccaef40fb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PayPal.1.9.1\lib\net451\PayPal.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -152,9 +156,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
@@ -201,23 +202,30 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountClientController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AvisController.cs" />
+    <Compile Include="Controllers\DevisController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\NewslettresController.cs" />
-    <Compile Include="Controllers\OffresController.cs" />
-    <Compile Include="Controllers\PromotionController.cs" />
-    <Compile Include="Controllers\PubliciteController.cs" />
+    <Compile Include="Controllers\PaniersController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\MyHelper.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\NewslettreModels.cs" />
-    <Compile Include="Models\OffreModels.cs" />
-    <Compile Include="Models\PromotionModel.cs" />
-    <Compile Include="Models\PublicitesModel.cs" />
+    <Compile Include="Models\PanierModels.cs" />
+    <Compile Include="Models\PaypalConfiguration.cs" />
+    <Compile Include="Models\PaypalLogger.cs" />
+    <Compile Include="Models\ProduitModels.cs" />
+    <Compile Include="Models\UserModels.cs" />
+    <Compile Include="MyRoleProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -272,9 +280,15 @@
     <Content Include="Content\BackOffice\lib\sparkline-chart.js" />
     <Content Include="Content\BackOffice\lib\tasks.js" />
     <Content Include="Content\BackOffice\lib\zabuto_calendar.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\delete.gif" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\rateit.css" />
+    <Content Include="Content\star.gif" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -287,11 +301,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\BackOffice\contactform\contactform.php" />
-    <Content Include="Grid.mvc.readme" />
+    <Content Include="EmailTemplate\Text.cshtml" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\gridmvc.js" />
-    <Content Include="Scripts\gridmvc.lang.ru.js" />
-    <Content Include="Scripts\gridmvc.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -300,6 +315,10 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\morris-data.js" />
+    <Content Include="Scripts\morris.js" />
+    <Content Include="Scripts\morris.min.js" />
+    <Content Include="Scripts\raphael-min.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
@@ -338,33 +357,43 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\BackOffice\index.cshtml" />
-    <Content Include="Views\Offres\Create.cshtml" />
-    <Content Include="Views\Offres\Delete.cshtml" />
-    <Content Include="Views\Offres\Details.cshtml" />
-    <Content Include="Views\Offres\Edit.cshtml" />
-    <Content Include="Views\Offres\Index.cshtml" />
-    <Content Include="Views\Shared\_LayoutFront.cshtml" />
-    <Content Include="Views\Newslettres\Delete.cshtml" />
-    <Content Include="Views\Newslettres\Details.cshtml" />
-    <Content Include="Views\Newslettres\Edit.cshtml" />
-    <Content Include="Views\Newslettres\CreateFront.cshtml" />
-    <Content Include="Views\Publicite\ListePublicitee.cshtml" />
-    <Content Include="Views\Publicite\Create.cshtml" />
-    <Content Include="Views\Publicite\Delete.cshtml" />
-    <Content Include="Views\Publicite\Edit.cshtml" />
-    <Content Include="Views\Publicite\Search.cshtml" />
-    <Content Include="Views\Newslettres\ListeNewslettre.cshtml" />
-    <Content Include="Views\Promotion\Create.cshtml" />
-    <Content Include="Views\Newslettres\Detailsfront.cshtml" />
-    <Content Include="Views\Promotion\Delete.cshtml" />
-    <Content Include="Views\Promotion\Index.cshtml" />
-    <Content Include="Views\Publicite\Editt.cshtml" />
-    <Content Include="Views\Shared\_GridPager.cshtml" />
-    <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\Newslettres\AllNewslettre.cshtml" />
+    <Content Include="Views\Boutiques\Create.cshtml" />
+    <Content Include="Views\Boutiques\Delete.cshtml" />
+    <Content Include="Views\Boutiques\Details.cshtml" />
+    <Content Include="Views\Boutiques\Edit.cshtml" />
+    <Content Include="Views\Boutiques\Index.cshtml" />
+    <Content Include="Views\Avis\Create.cshtml" />
+    <Content Include="Views\Avis\Delete.cshtml" />
+    <Content Include="Views\Avis\Details.cshtml" />
+    <Content Include="Views\Avis\Edit.cshtml" />
+    <Content Include="Views\Avis\Index.cshtml" />
+    <Content Include="Views\Shared\_Front_Layout.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Product\CreateProd.cshtml" />
+    <Content Include="Views\Paniers\Index.cshtml" />
+    <Content Include="Views\Paniers\Create.cshtml" />
+    <Content Include="Views\Paniers\OrderNow.cshtml" />
+    <Content Include="Views\Paniers\View.cshtml" />
+    <Content Include="Views\Paniers\Failure.cshtml" />
+    <Content Include="Views\Paniers\Success.cshtml" />
+    <Content Include="Views\AccountClient\Confirm.cshtml" />
+    <Content Include="Views\AccountClient\Login.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\AccountClient\Register.cshtml" />
+    <Content Include="Views\Stats\GetData.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Details.cshtml" />
+    <Content Include="Views\User\Create.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\Delete.cshtml" />
+    <Content Include="Views\Stats\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\assets\" />
     <Folder Include="Content\BackOffice\img\friends\" />
     <Folder Include="Content\BackOffice\img\portfolio\" />
     <Folder Include="Content\BackOffice\lib\advanced-datatable\" />
@@ -392,12 +421,17 @@
     <Folder Include="Content\BackOffice\lib\php-mail-form\" />
     <Folder Include="Content\BackOffice\lib\raphael\" />
     <Folder Include="Content\BackOffice\lib\xchart\" />
+    <Folder Include="Content\bower_components\" />
+    <Folder Include="Content\build\" />
+    <Folder Include="Content\Chat\" />
+    <Folder Include="Content\dist\" />
     <Folder Include="Content\FrontOffice\fonts\" />
     <Folder Include="Content\FrontOffice\images\" />
     <Folder Include="Content\FrontOffice\js\" />
     <Folder Include="Content\FrontOffice\plugins\" />
     <Folder Include="Content\FrontOffice\styles\" />
-    <Folder Include="Content\Upload\" />
+    <Folder Include="Content\plugins\" />
+    <Folder Include="Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -409,7 +443,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{7271ABE1-3CB5-4EFE-8C16-7A0DC482DCA1}</Project>
+      <Project>{7271abe1-3cb5-4efe-8c16-7a0dc482dca1}</Project>
       <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Domaine\Domaine.csproj">
